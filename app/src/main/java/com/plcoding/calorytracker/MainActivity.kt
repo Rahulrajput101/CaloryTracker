@@ -8,7 +8,14 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.plcoding.calorytracker.naviagtion.navigate
 import com.plcoding.calorytracker.ui.theme.CaloryTrackerTheme
+import com.plcoding.core.navigation.Route
+import com.plcoding.core.util.UiEvent
 import com.plcoding.onboarding_presentation.welcome.WelcomeScreen
 
 class MainActivity : ComponentActivity() {
@@ -16,7 +23,35 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             CaloryTrackerTheme {
-                WelcomeScreen()
+                val navController = rememberNavController()
+                NavHost(
+                    navController = navController,
+                    startDestination = Route.WELCOME
+                ){
+
+                    composable(Route.WELCOME){
+                       WelcomeScreen(onNavigate = navController::navigate)
+                    }
+                    composable(Route.AGE){
+
+                    }
+                    composable(Route.GENDER){
+
+                    }
+                    composable(Route.HEIGHT){
+
+                    }
+                    composable(Route.WEIGHT){
+
+                    }
+                    composable(Route.NUTRIENT_GOAL){
+
+                    }
+
+
+
+                }
+
             }
         }
     }

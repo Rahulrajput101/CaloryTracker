@@ -7,18 +7,22 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import com.plcoding.core_ui.LocalSpacing
+import com.plcoding.onboarding_presentation.R
 
 @Composable
 fun ActionButton(
-    text: String,
-    onClick: () -> Unit,
+    text : String,
     modifier: Modifier = Modifier,
-    isEnabled: Boolean = true,
+    onClick :() -> Unit,
+    isEnabled : Boolean = true,
     textStyle: TextStyle = MaterialTheme.typography.button
-) {
+){
+
     Button(
         onClick = onClick,
         modifier = modifier,
