@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import com.google.android.material.tabs.TabLayout.Mode
 import com.plcoding.core.data.preferences.DefaultPreferences
 import com.plcoding.core.domain.prefernces.Preference
+import com.plcoding.core.domain.use_case.FilterOutDigits
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -30,6 +31,12 @@ object AppModule {
     fun providePreferences(sharedPreferences: SharedPreferences) : Preference {
         return DefaultPreferences(sharedPreferences)
 
+    }
+
+    @Provides
+    @Singleton
+    fun provideFilterOutUseCase() : FilterOutDigits{
+        return FilterOutDigits()
     }
 
 }
