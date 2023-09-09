@@ -20,8 +20,10 @@ import com.plcoding.calorytracker.naviagtion.navigate
 import com.plcoding.calorytracker.ui.theme.CaloryTrackerTheme
 import com.plcoding.core.navigation.Route
 import com.plcoding.core.util.UiEvent
+import com.plcoding.onboarding_presentation.activity.ActivityScreen
 import com.plcoding.onboarding_presentation.age.AgeScreen
 import com.plcoding.onboarding_presentation.gender.GenderScreen
+import com.plcoding.onboarding_presentation.goal.GoalScreen
 import com.plcoding.onboarding_presentation.height.HeightScreen
 import com.plcoding.onboarding_presentation.weight.WeightScreen
 import com.plcoding.onboarding_presentation.welcome.WelcomeScreen
@@ -72,7 +74,15 @@ class MainActivity : ComponentActivity() {
                             )
                         }
                         composable(Route.ACTIVITY){
+                           ActivityScreen(
+                                onNavigate = navController::navigate
+                            )
+                        }
 
+                        composable(Route.GOAL){
+                            GoalScreen(
+                                onNavigate = navController::navigate
+                            )
                         }
 
                         composable(Route.NUTRIENT_GOAL){
