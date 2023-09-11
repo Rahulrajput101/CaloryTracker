@@ -6,6 +6,8 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import dagger.hilt.InstallIn
+import kotlinx.coroutines.flow.Flow
+
 
 @Dao
 interface TrackerDao {
@@ -24,7 +26,7 @@ interface TrackerDao {
             WHERE dayOfMonth = :day AND month= :month AND year =:year
         """
     )
-    fun getFoodsForDate(day: Int, month: Int,year: Int)
+    fun getFoodsForDate(day: Int, month: Int,year: Int): Flow<List<TrackedFoodEntity>>
 
 
 }

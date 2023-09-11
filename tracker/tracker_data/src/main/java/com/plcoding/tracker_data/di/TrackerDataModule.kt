@@ -6,6 +6,8 @@ import com.plcoding.tracker_data.local.TrackerDatabase
 import com.plcoding.tracker_data.local.TrackerDatabase.Companion.DATABASE_NAME
 import com.plcoding.tracker_data.remote.OpenFoodApi
 import com.plcoding.tracker_data.remote.OpenFoodApi.Companion.BASE_URL
+import com.plcoding.tracker_data.repository.TrackerRepositoryImp
+import com.plcoding.tracker_domain.repository.TrackerRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -54,6 +56,19 @@ object TrackerDataModule {
             TrackerDatabase::class.java,
             DATABASE_NAME,
         ).build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideTrackerRepository(
+        api: OpenFoodApi,
+        db: TrackerDatabase
+    ) : TrackerRepository{
+
+        return TrackerRepositoryImp(
+            api = api,
+            dao =db.dao
+        )
     }
 
 }
