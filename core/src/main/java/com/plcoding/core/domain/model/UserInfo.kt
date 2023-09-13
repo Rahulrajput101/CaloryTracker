@@ -9,5 +9,5 @@ data class UserInfo (
     val goalType: GoalType,
     val carbRatio : Float,
     val proteinRatio : Float,
-    val fabRatio : Float
+    val fatRatio : Float
 )

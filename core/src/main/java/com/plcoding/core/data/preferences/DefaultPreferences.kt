@@ -84,7 +84,7 @@ class DefaultPreferences(
             goalType = GoalType.fromString(goalTypeString ?: "keep_weight" ),
             carbRatio = carbRatio,
             proteinRatio = proteinRatio,
-            fabRatio = fatRatio
+            fatRatio = fatRatio
         )
     }
 }
