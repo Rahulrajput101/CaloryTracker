@@ -1,5 +1,6 @@
 package com.plcoding.tracker_presentation.tracker_overview
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -31,6 +32,7 @@ class TrackerOverviewViewModel @Inject constructor(
       private var getFoodsForDateJob : Job? = null
 
       init {
+            refreshFood()
             preference.saveShouldShowOnBoarding(false)
       }
 
@@ -54,6 +56,7 @@ class TrackerOverviewViewModel @Inject constructor(
                   }
                   is TrackerOverViewEvent.OnDeleteTrackedFoodClick -> {
                         viewModelScope.launch {
+
                               trackerUseCases.deleteTrackedFood(event.trackedFood)
                               refreshFood()
                         }

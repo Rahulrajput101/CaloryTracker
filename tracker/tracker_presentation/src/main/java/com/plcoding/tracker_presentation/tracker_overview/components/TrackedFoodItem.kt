@@ -1,5 +1,6 @@
 package com.plcoding.tracker_presentation.tracker_overview.components
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -118,7 +119,10 @@ fun TrackedFoodItem(
                 contentDescription = stringResource(id = R.string.delete),
                 modifier = Modifier
                     .align(Alignment.End)
-                    .clickable { onDeleteClick }
+                    .clickable {
+                        Log.d("Delete called"," 1delete")
+                        onDeleteClick()
+                    }
             )
 
             Spacer(modifier = Modifier.height(spacing.spaceExtraSmall))

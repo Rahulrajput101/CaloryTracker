@@ -1,5 +1,6 @@
 package com.plcoding.tracker_presentation.tracker_overview
 
+import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -43,6 +44,7 @@ fun TrackerOverviewScreen(
             }
         }
     }
+    Log.d("Delete called","screen delete")
     
     LazyColumn(
         modifier = Modifier
@@ -85,6 +87,7 @@ fun TrackerOverviewScreen(
                             TrackedFoodItem(
                                 trackedFood = food,
                                 onDeleteClick = {
+                                    Log.d("Delete called","3delete")
                                     viewModel.onEvent(
                                         TrackerOverViewEvent
                                             .OnDeleteTrackedFoodClick(food)
