@@ -1,6 +1,5 @@
 package com.plcoding.onboarding_presentation.nutrient_goal
 
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -23,13 +22,12 @@ import com.plcoding.core_ui.LocalSpacing
 import com.plcoding.onboarding_presentation.R
 import com.plcoding.onboarding_presentation.components.ActionButton
 import com.plcoding.onboarding_presentation.components.UnitTextFiled
-import com.plcoding.onboarding_presentation.height.HeightViewModel
 import kotlinx.coroutines.flow.collect
 
 @Composable
 fun NutrientGoalScreen(
     scaffoldState: ScaffoldState,
-    onNavigate : (UiEvent.Navigate) -> Unit,
+    onNextClick : () -> Unit,
     viewModel: NutrientGoalViewModel = hiltViewModel()
 ) {
     val spacing = LocalSpacing.current
@@ -39,7 +37,7 @@ fun NutrientGoalScreen(
     LaunchedEffect(key1 = true){
         viewModel.uiEvent.collect {event ->
             when(event){
-                is UiEvent.Navigate -> onNavigate(event)
+                is UiEvent.Success -> onNextClick()
                 is UiEvent.ShowSnackbar -> {
                     scaffoldState.snackbarHostState.showSnackbar(
                         message = event.message.asString(context)

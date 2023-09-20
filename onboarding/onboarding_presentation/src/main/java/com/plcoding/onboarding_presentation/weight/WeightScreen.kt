@@ -22,13 +22,12 @@ import com.plcoding.core_ui.LocalSpacing
 import com.plcoding.onboarding_presentation.R
 import com.plcoding.onboarding_presentation.components.ActionButton
 import com.plcoding.onboarding_presentation.components.UnitTextFiled
-import com.plcoding.onboarding_presentation.height.HeightViewModel
 import kotlinx.coroutines.flow.collect
 
 @Composable
 fun WeightScreen(
     scaffoldState: ScaffoldState,
-    onNavigate : (UiEvent.Navigate) -> Unit,
+    onNextClick : () -> Unit,
     viewModel: WeightViewModel = hiltViewModel()
 ) {
     val spacing = LocalSpacing.current
@@ -37,7 +36,7 @@ fun WeightScreen(
     LaunchedEffect(key1 = true){
         viewModel.uiEvent.collect {event ->
             when(event){
-                is UiEvent.Navigate -> onNavigate(event)
+                is UiEvent.Success -> onNextClick()
                 is UiEvent.ShowSnackbar -> {
                     scaffoldState.snackbarHostState.showSnackbar(
                         message = event.message.asString(context)

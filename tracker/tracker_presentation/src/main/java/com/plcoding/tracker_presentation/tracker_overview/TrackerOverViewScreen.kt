@@ -10,13 +10,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.plcoding.core.util.UiEvent
 import com.plcoding.core_ui.LocalSpacing
 import com.plcoding.tracker_presentation.R
 import com.plcoding.tracker_presentation.tracker_overview.components.AddButton
@@ -24,11 +21,10 @@ import com.plcoding.tracker_presentation.tracker_overview.components.DaySelector
 import com.plcoding.tracker_presentation.tracker_overview.components.ExpandableMeal
 import com.plcoding.tracker_presentation.tracker_overview.components.NutrientsHeader
 import com.plcoding.tracker_presentation.tracker_overview.components.TrackedFoodItem
-import dagger.hilt.android.lifecycle.HiltViewModel
 
 @Composable
 fun TrackerOverviewScreen(
-    onNavigate: (UiEvent.Navigate) -> Unit,
+    onNavigateToSearch: (String,Int,Int,Int) -> Unit,
     viewModel: TrackerOverviewViewModel  = hiltViewModel()
 ) {
 
@@ -36,15 +32,7 @@ fun TrackerOverviewScreen(
     val context = LocalContext.current
     val state = viewModel.state
 
-    LaunchedEffect(key1 = context) {
-        viewModel.uiEvent.collect { event ->
-            when(event) {
-                is UiEvent.Navigate -> onNavigate(event)
-                else -> Unit
-            }
-        }
-    }
-    Log.d("Delete called","screen delete")
+
     
     LazyColumn(
         modifier = Modifier
@@ -103,9 +91,11 @@ fun TrackerOverviewScreen(
                                 meal.name.asString(context)
                             ),
                             onClick = {
-                                viewModel.onEvent(
-                                    TrackerOverViewEvent
-                                        .OnAddFoodClick(meal)
+                                onNavigateToSearch(
+                                    meal.name.asString(context),
+                                    state.localDate.dayOfMonth,
+                                    state.localDate.monthValue,
+                                    state.localDate.year
                                 )
                             },
                             modifier = Modifier.fillMaxWidth()
