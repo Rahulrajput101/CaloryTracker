@@ -1,7 +1,6 @@
 package com.plcoding.core.util
 
 import android.content.Context
-
 sealed class UiText {
 
     data class DynamicString(val text: String) : UiText()

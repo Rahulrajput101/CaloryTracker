@@ -23,7 +23,7 @@ class CalculateMealNutrients(
                   carbs = food.sumOf { it.carbs },
                   protein = food.sumOf { it.protein },
                   fat = food.sumOf { it.fat },
-                  calories = food.sumOf { it.calories },
+                  calories = food.sumOf { it.calories  },
                   mealType = type
               )
             }

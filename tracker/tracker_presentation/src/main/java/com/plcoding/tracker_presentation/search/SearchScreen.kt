@@ -85,7 +85,7 @@ fun SearchScreen(
                 viewModel.onEvent(SearchEvent.OnSearchFocusChange(it.isFocused))
             }
         )
-        
+
         Spacer(modifier = Modifier.height(spacing.spaceMedium))
 
         LazyColumn(modifier = Modifier.fillMaxSize()) {
