@@ -71,6 +71,7 @@ fun SearchTextField(
                     .padding(spacing.spaceMedium)
                     .padding(end = spacing.spaceMedium)
                     .onFocusChanged { onFocusChanged(it) }
+                    .testTag("search_textfield")
 
           )
           if(shouldShowHint) {

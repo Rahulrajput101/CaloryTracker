@@ -21,6 +21,7 @@ import com.plcoding.tracker_presentation.tracker_overview.components.DaySelector
 import com.plcoding.tracker_presentation.tracker_overview.components.ExpandableMeal
 import com.plcoding.tracker_presentation.tracker_overview.components.NutrientsHeader
 import com.plcoding.tracker_presentation.tracker_overview.components.TrackedFoodItem
+import java.util.Locale.filter
 
 @Composable
 fun TrackerOverviewScreen(
@@ -71,7 +72,11 @@ fun TrackerOverviewScreen(
                             .padding(horizontal = spacing.spaceSmall)
 
                     ) {
-                        state.trackedFood.forEach { food ->
+                        val foods = state.trackedFood.filter {
+                              it.mealType == meal.mealType
+                        }
+
+                        foods.forEach { food ->
                             TrackedFoodItem(
                                 trackedFood = food,
                                 onDeleteClick = {

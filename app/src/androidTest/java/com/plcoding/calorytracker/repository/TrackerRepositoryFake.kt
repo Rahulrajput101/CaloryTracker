@@ -44,4 +44,5 @@ class TrackerRepositoryFake: TrackerRepository {
     override fun getFoodsForDate(localDate: LocalDate): Flow<List<TrackedFood>> {
         return  getFoodsForFlow
     }
+
 }
